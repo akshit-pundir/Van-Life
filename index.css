@@ -1,5 +1,11 @@
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+
 * {
     box-sizing: border-box;
 }
@@ -9,8 +15,9 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #FFF7ED;
+    background-color: #f7ebdd;
     font-family: "Inter", sans-serif;
+    
 }
 
 body::-webkit-scrollbar {
@@ -29,7 +36,7 @@ header {
     padding-block: 10px;
 }
 
-header .site-logo {
+ .site-logo {
     color: black;
     margin-right: auto;
     text-transform: uppercase;
@@ -181,12 +188,14 @@ header a:hover {
 }
 
 .van-simple{
-   padding: 8px;
+   padding: 10px;
     background-color: rgb(78, 116, 2);
     color: white;
     border-radius: 5px;
     font-family: Roboto;
     font-weight: 500;
+   
+   
 }
 .van-rugged{
    padding: 8px;
@@ -224,6 +233,7 @@ header a:hover {
     font-family: Roboto;
     margin-left: 100px;
     margin-bottom: 20px;
+   
 }
 .sub>h1{
     font-size: 3em;
@@ -236,6 +246,7 @@ header a:hover {
 .sub >i{
     padding-right: 30px;
     padding-left: 30px;
+   
 }
 
 .sub>button{
@@ -249,5 +260,11 @@ header a:hover {
     font-size: 20px;
     font-weight: 400;
     
+}
 
+
+.host_page_img{
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
 }
