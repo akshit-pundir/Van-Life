@@ -15,7 +15,7 @@ import HostLayout from './components/HostLayout';
 import HostVanPricing from './pages/Host/HostVanPricing'
 import HostVanPhotos from './pages/Host/HostVanPhotos'
 import Details from './pages/Host/Details';
-
+import ErrorPage from './pages/ErrorPage'
 
 import "./server";
 
@@ -47,8 +47,8 @@ function App() {
         </Route>
 
 
+       <Route path="*"  element={<ErrorPage/>} /> 
         </Route>
- 
       </Routes>
     </BrowserRouter>
   );
