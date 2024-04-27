@@ -1,22 +1,41 @@
-
 import React from 'react'
 import { Link,useSearchParams,NavLink } from 'react-router-dom';
+import { getVans } from '../../api';
 
 
 const Vans = () => {
   
     const [data,setData]=React.useState([]);
     const [search,setSearch]=useSearchParams();
+    const [loading,setLoading]=React.useState(false);
+    const [error,setError]=React.useState(null);
 
   React.useEffect(()=>{
-        fetch("/api/vans")
-        .then(res => res.json())
-        .then(res =>setData(res.vans))
+       async function loadVans(){
+       
+        setLoading(true);
+       
+        try{
+            const apiData= await getVans();
+            setData(apiData);   
+            }
+            catch(err){
+                console.log(err);
+                setError(err);
+                
+            }
+            finally{
+                setLoading(false);
+            }
+    }
+    
+       loadVans();
+   
   },[]);
 
   const typeFilter=search.get("type");
   
-  // console.log(typeFilter);
+ 
 
   const displayVans= typeFilter ? data.filter( res => res.type.toLowerCase() === typeFilter) : data;
 
@@ -47,7 +66,13 @@ function getnewSearchParams(key,value){
 }
 
 
-
+    if(loading){
+        return <h1 className=' text-5xl font-extrabold m-10'>Loading .....</h1>
+    }
+    
+    if(error){
+        return <h1 className=' text-5xl font-extrabold m-10'>Error .....</h1>
+    }
 
     return (
       <>
