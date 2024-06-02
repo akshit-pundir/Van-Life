@@ -10,8 +10,8 @@ export function loader(){
 const Vans = () => {
   
     // const [data,setData]=React.useState([]);
-    const [search,setSearch]=useSearchParams();
     // const [loading,setLoading]=React.useState(false);
+    const [search,setSearch]=useSearchParams();
     const [error,setError]=React.useState(null);
 
 //   React.useEffect(()=>{

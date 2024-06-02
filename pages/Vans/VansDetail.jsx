@@ -1,18 +1,23 @@
 import React from 'react'
-import { NavLink, useParams,useLocation} from 'react-router-dom';
+import { NavLink, useParams,useLocation,useLoaderData} from 'react-router-dom';
+import { getVans } from '../../api';
 
+export function loader({params}){
+     return getVans(params.id);
+}
 
 const VansDetail = () => {
     
-    const [data,setData]=React.useState([]);
-    const param=useParams();
+    // const [data,setData]=React.useState([]);
+    const data=useLoaderData()
+    // const param=useParams();
     const location=useLocation();
     
-    React.useEffect(() =>{
-        fetch(`/api/vans/${param.id}`)
-        .then(res => res.json())
-        .then(result => setData(result.vans))
-    },[])
+    // React.useEffect(() =>{
+    //     fetch(`/api/vans/${param.id}`)
+    //     .then(res => res.json())
+    //     .then(result => setData(result.vans))
+    // },[])
 
     const back=location.state?.searchParams || "";
     const bt=location.state?.variant || "all";

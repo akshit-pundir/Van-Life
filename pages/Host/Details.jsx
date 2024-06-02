@@ -3,7 +3,7 @@ import {useOutletContext} from 'react-router-dom';
 
 const Details = () => {
 
-  const[van,setVan]=useOutletContext();
+  const{van}=useOutletContext();
   
   return (
     <div className=' absolute  top-[84%] left-28 flex flex-col gap-3 text-[16px] font-medium flex-wrap max-w-xl  '>

@@ -3,7 +3,7 @@ import {useOutletContext} from 'react-router-dom';
 
 const HostVanPricing = () => {
  
-  const[van,setVan]=useOutletContext();
+  const {van}=useOutletContext();
  
  
   return (

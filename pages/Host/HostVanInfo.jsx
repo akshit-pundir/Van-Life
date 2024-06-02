@@ -1,16 +1,25 @@
 import React from 'react'
-import { NavLink, Link ,useParams,Outlet} from 'react-router-dom'
+import { NavLink, Link ,useParams,Outlet, useLoaderData} from 'react-router-dom'
+import { getHostVans } from '../../api';
+import { authenticate } from '../../utils';
+
+
+export async function loader({params,request}){
+    await authenticate(request);
+    return  getHostVans(params.id);
+}
 
 const HostVanInfo = () => {
-    const param=useParams();
-    const [van, setVan] = React.useState([]);
-    React.useEffect(()=>{
-            fetch(`/api/host/vans/${param.id}`)
-            .then(res => res.json())
-            .then(data => setVan(data.vans))
+   
+    // const [van, setVan] = React.useState([]);
+    // React.useEffect(()=>{
+    //         fetch(`/api/host/vans/${param.id}`)
+    //         .then(res => res.json())
+    //         .then(data => setVan(data.vans))
         
-        },[])
+    //     },[])
        
+    const van=useLoaderData();
         
  
     return (
@@ -43,7 +52,7 @@ const HostVanInfo = () => {
               <NavLink to="photos" className="hover:underline font-semibold text-xl m-3"   >Photos</NavLink>
   
             </nav>
-            <Outlet  context={ [van, setVan]}/>
+            <Outlet  context={ {van}}/>
             </div>
 
             </section>
