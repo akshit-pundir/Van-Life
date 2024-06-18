@@ -1,25 +1,29 @@
 
 import React from 'react'
-import { Link, useLoaderData } from 'react-router-dom';
+import { Await, Link, defer, useLoaderData } from 'react-router-dom';
 import { getHostVans } from '../../api';
 import { authenticate } from '../../utils';
+import Loading from '../Loading';
 
 export async function loader({request}){
   await authenticate(request);
-  return  getHostVans();
+  return   defer( {hostvanPromise: getHostVans() });
 }
 
 const HostVans = () => {
+
   // const [vans,setVans]=React.useState([]);
   // React.useEffect(()=>{
   //       fetch("/api/host/vans")
   //       .then(res => res.json())
   //       .then( data => setVans(data.vans))
   // },[])
-  const vans=useLoaderData();
+
+  const dataPromise=useLoaderData();
   
   
-  console.log(vans);
+function renderHostVans(vans){
+
   const handleHostVans=vans.map((item)=>(
         <Link  to={`/host/vans/${item.id}`}
           key={`${item.id}`}
@@ -33,30 +37,41 @@ const HostVans = () => {
                <p className=' text-xl'>${item.price}/day</p>
                </div> 
           </div>
-
+  
         
         
         
         </Link>
     
-
+  
   ) )
+
+    return(
+      <section>
+         {handleHostVans}
+      </section>
+
+    )
+
+
+
+}
+
 
   return (
     <section className=' m-6 p-4'>
+   
     <h1 className=" text-3xl">Your Listed Vans</h1>
     <div className=" w-full">
-        {
-            vans.length > 0 ? (
-                <section>
-                    {handleHostVans}
-                </section>
-
-            ) : (
-                    <h2>Loading...</h2>
-                )
-        }
-    </div>
+      <React.Suspense fallback={<Loading/>}>
+        
+         <Await resolve={dataPromise.hostvanPromise}>
+            {renderHostVans}
+          </Await> 
+        
+          </React.Suspense>
+        </div>
+            
 </section>
   )
 }

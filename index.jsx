@@ -23,11 +23,11 @@ import "./server";
 
 const NewRouter=createBrowserRouter(createRoutesFromElements(
  
- <Route path="/" element={<Layout/>} errorElement={<ErrorPage/>} >
+ <Route path="/" element={<Layout/>} errorElement={<ErrorPage/>}  >
        
   <Route index element={<Home/>}/>
   <Route path="about" element={<About />} />
-  <Route path="vans" element={<Vans />} loader={vansLoader}  />
+  <Route path="vans" element={<Vans />}   loader={vansLoader}  />
   <Route path="vans/:id" element={<VansDetail />}   loader={vanDetailLoader}/>
 
   <Route path="host" element={<HostLayout/>} >
