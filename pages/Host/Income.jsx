@@ -1,5 +1,5 @@
 import React from 'react'
-// import {incomeGraph} from "../../assets/images";
+import incomeImg from "../../assets/images/incomeGraph.png"
 
 const Income = () => {
 
@@ -19,7 +19,7 @@ const Income = () => {
     <h2>$2,260</h2>
     <img
         className="graph"
-        src="../../assets/images/incomeGraph.png"
+        src={incomeImg}
         alt="Income graph"
     />
     <div className="info-header">
